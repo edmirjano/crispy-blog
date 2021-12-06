@@ -2,15 +2,16 @@ import { Post } from "../models/postModel.js";
 
 export const getPost = async (req, res) => {
 
-    const post = await Post.find();
+    const posts = await Post.find();
 
-    if (!post || post.length == 0) {
+    if (!posts || posts.length == 0) {
         res.status(204).send("Cannot find any posts").end();
         return;
     }
     res.status(200, { 'Content-Type': 'application/json' });
-    res.write(JSON.stringify(post));
+    res.write(JSON.stringify(posts));
     res.end();
+    return;
 };
 
 export const addPost = async (req, res) => {
@@ -26,8 +27,23 @@ export const addPost = async (req, res) => {
     newPost.save(function (err) {
         if (err){
             res.status(500).send(err.message);
+            return;
         }
         res.status(200).send("Success");
+        return;
       });
 
 };
+
+export const getSinglePost = async (req, res) => {
+    const post = await Post.findById(req.params.id);
+
+    if (!post || post.length == 0) {
+        res.status(204).send("Cannot find your post").end();
+        return;
+    }
+    res.status(200, { 'Content-Type': 'application/json' });
+    res.write(JSON.stringify(post));
+    res.end();
+    return;
+}

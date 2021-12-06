@@ -1,0 +1,9 @@
+.centered-form{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding-top: 5%;
+}
+.form-width{
+    width: 70%;
+}
