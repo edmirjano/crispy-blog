@@ -8,12 +8,11 @@ import DescriptionIcon from '@mui/icons-material/Description';
 import Button from '@mui/material/Button';
 import PublishIcon from '@mui/icons-material/Publish';
 import { useState } from 'react';
-import { config } from '../../config/config';
 import axios from 'axios';
 import Snackbar from '@mui/material/Snackbar';
 import { useNavigate } from "react-router-dom";
 
-export const AddPost = () => {
+const AddPost = () => {
     let navigate = useNavigate();
     const [title, setTitle] = useState<string>("");
     const [description, setDescription] = useState<string>("");
@@ -38,7 +37,7 @@ export const AddPost = () => {
             setSnackbar(true);
             return;
         }
-        axios.post(`${config.base_url}add-post`, {
+        axios.post(`${process.env.REACT_APP_BASE_URL}/add-post`, {
             title: title,
             description: description
           })
@@ -47,7 +46,7 @@ export const AddPost = () => {
             setSnackbar(true);
           })
           .catch(function (error) {
-            setSnackbarText("Something went wrong, please try again later/");
+            setSnackbarText("Something went wrong, please try again later");
             setSnackbar(true);
           });
     };
@@ -110,3 +109,6 @@ export const AddPost = () => {
         </div>
     )
 };
+
+
+export default AddPost;

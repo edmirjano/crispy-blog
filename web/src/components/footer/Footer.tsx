@@ -1,7 +1,7 @@
 import './Footer.css';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
-export const Footer = () => {
+const Footer = () => {
   return (
      <Paper sx={{ position: 'fixed', bottom: 0, left: 0, right: 0 }} elevation={3}>
       <Box > 
@@ -12,3 +12,5 @@ export const Footer = () => {
     </Paper>
   )
 };
+
+export default Footer;

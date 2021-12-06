@@ -2,28 +2,26 @@ import './PostList.css';
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Post } from '../../models/postModel';
-import { config } from '../../config/config';
 import List from '@mui/material/List';
 import { Link } from 'react-router-dom';
 import ListItem from '@mui/material/ListItem';
 import Divider from '@mui/material/Divider';
 import moment from 'moment';
 
-export const PostList = () => {
+const PostList = () => {
   const [posts, setPosts] = useState<Post[]>([]);
 
   useEffect(() => {
-    axios.get(`${config.base_url}posts`)
+    axios.get(`${process.env.REACT_APP_BASE_URL}/posts`)
       .then(res => {
         setPosts(res.data);
       });
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   return (
     <div>
-      {posts.map(({ _id, title, description, date }, index) => (
-        <List key={index}>
+      {posts.map(({ _id, title, description, date }) => (
+        <List key={_id}>
           <Link to={`/posts/${_id}`} className="no-decoration-posts">
             <ListItem>
               <article style={{ lineHeight: 1.35 }}>
@@ -60,3 +58,6 @@ function truncate(text: string, limit: number): React.ReactNode {
   }
   return text.replace(/[\s.]+$/g, '');
 }
+
+
+export default PostList;

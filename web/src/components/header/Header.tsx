@@ -10,7 +10,7 @@ import FastfoodIcon from '@mui/icons-material/Fastfood';
 import AddToPhotosIcon from '@mui/icons-material/AddToPhotos';
 import AutoAwesomeMotionIcon from '@mui/icons-material/AutoAwesomeMotion';
 
-export const Header = () => {
+const Header = () => {
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
@@ -46,3 +46,5 @@ export const Header = () => {
     </Box>
   )
 };
+
+export default Header;

@@ -5,26 +5,24 @@ import moment from 'moment';
 import Divider from '@mui/material/Divider';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import { config } from '../../config/config';
 import { Link, useParams } from 'react-router-dom';
 import Button from '@mui/material/Button';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
-export const SinglePost = () => {
+const SinglePost = () => {
   const [post, setPost] = useState<Post>();
   let params = useParams();
 
   useEffect(() => {
-    axios.get(`${config.base_url}posts/${params.postId}`)
+    axios.get(`${process.env.REACT_APP_BASE_URL}/posts/${params.postId}`)
       .then(res => {
         setPost(res.data);
       });
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, [params.postId])
 
   return (
     <Paper className="box">
-      <Link to={`/posts`} className="back-button">
+      <Link to='/posts' className="back-button">
         <Button variant="outlined" startIcon={<ArrowBackIcon />}>
           Back
         </Button>
@@ -38,8 +36,10 @@ export const SinglePost = () => {
         {post &&
           post.description
             .split('\n')
-            .map((paragraph, index) => <p key={index}>{paragraph}</p>)}
+            .map((paragraph) => <p>{paragraph}</p>)}
       </article>
     </Paper>
   )
 };
+
+export default SinglePost;

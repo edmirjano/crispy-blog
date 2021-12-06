@@ -1,10 +1,6 @@
 import './App.css';
-import { Header } from './components/header/Header';
-import { Footer } from './components/footer/Footer';
 import { Navigate, Route, Routes } from 'react-router-dom';
-import { SinglePost } from './components/singlePost/SinglePost';
-import { PostList } from './components/postList/PostList';
-import { AddPost } from './components/addPost/AddPost';
+import { AddPost, PostList, SinglePost, Footer, Header } from './components';
 
 function App() {
   return (
